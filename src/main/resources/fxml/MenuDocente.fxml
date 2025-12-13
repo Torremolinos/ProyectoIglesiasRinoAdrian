@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" 
+            stylesheets="@../styles/Styles.css"
+            xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.adrian.gestionfct.controller.MenuDocenteController">
+    
+    <!-- Barra superior -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" 
+              style="-fx-background-color: #28a745; -fx-padding: 15;">
+            <Label text="Panel Docente" 
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUsuario" 
+                   style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Button text="Cerrar Sesión" 
+                    onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+    
+    <!-- Menú lateral -->
+    <left>
+        <VBox spacing="5" style="-fx-background-color: #2c3e50; -fx-padding: 20;" prefWidth="220">
+            
+            <Label text="MENÚ DOCENTE" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 0 0 10 0;"/>
+            
+            <Button text="🏠 Inicio" 
+                    onAction="#handleInicio"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+            
+            <Label text="MIS ESTUDIANTES" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 10 0 10 0;"/>
+            
+            <Button text="🎓 Ver Estudiantes" 
+                    onAction="#handleVerEstudiantes"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="📋 Asignar FCT" 
+                    onAction="#handleAsignarFCT"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="📊 Seguimiento FCT" 
+                    onAction="#handleSeguimientoFCT"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+            
+            <Label text="EMPRESAS" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 10 0 10 0;"/>
+            
+            <Button text="🏢 Ver Empresas" 
+                    onAction="#handleVerEmpresas"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="👨‍🏫 Ver Tutores/as" 
+                    onAction="#handleVerTutores"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+            
+            <Label text="DOCUMENTACIÓN" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 10 0 10 0;"/>
+            
+            <Button text="📄 Gestionar Documentos" 
+                    onAction="#handleGestionDocumentos"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="📤 Subir Documento" 
+                    onAction="#handleSubirDocumento"
+                    styleClass="menu-button" prefWidth="180"/>
+        </VBox>
+    </left>
+    
+    <!-- Contenido principal -->
+    <center>
+        <VBox fx:id="contenidoPrincipal" spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+            
+            <Label text="Bienvenido/a al Panel Docente" 
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            
+            <Label text="Desde aquí puede gestionar las FCT de sus estudiantes." 
+                   style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            
+            <!-- Tarjetas de resumen -->
+            <HBox spacing="20" alignment="CENTER">
+                
+                <VBox alignment="CENTER" spacing="10" prefWidth="180" prefHeight="120"
+                      style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label fx:id="lblMisEstudiantes" text="0" 
+                           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #28a745;"/>
+                    <Label text="Mis Estudiantes" style="-fx-text-fill: #666;"/>
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" prefWidth="180" prefHeight="120"
+                      style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label fx:id="lblFCTActivas" text="0" 
+                           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #ffc107;"/>
+                    <Label text="FCT Activas" style="-fx-text-fill: #666;"/>
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="10" prefWidth="180" prefHeight="120"
+                      style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label fx:id="lblPendientes" text="0" 
+                           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #dc3545;"/>
+                    <Label text="Sin Asignar" style="-fx-text-fill: #666;"/>
+                </VBox>
+            </HBox>
+            
+        </VBox>
+    </center>
+    
+    <!-- Barra inferior -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #ecf0f1; -fx-padding: 10;">
+            <Label text="GestionFCT v1.0 - Panel Docente" 
+                   style="-fx-text-fill: #999; -fx-font-size: 11px;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

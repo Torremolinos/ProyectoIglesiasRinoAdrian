@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adrian.gestionfct.controller.UserController">
+
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        
+        <!-- MENÚ SUPERIOR -->
+        <MenuBar>
+            <Menu text="Archivo">
+                <MenuItem onAction="#volverMenu" text="Volver al Menú" />
+                <SeparatorMenuItem />
+                <MenuItem onAction="#exit" text="Salir" />
+            </Menu>
+            <Menu text="Edición">
+                <MenuItem fx:id="menuEliminar" onAction="#eliminarUsuarios" text="Eliminar Seleccionados" />
+            </Menu>
+        </MenuBar>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <!-- PANEL IZQUIERDO: FORMULARIO -->
+            <VBox prefWidth="300.0" spacing="15.0">
+                <Label text="Gestión de Usuarios">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <!-- ID (oculto) -->
+                <Label fx:id="userId" visible="false" />
+
+                <!-- Nombre -->
+                <VBox spacing="5.0">
+                    <Label text="Nombre *" />
+                    <TextField fx:id="txtNombre" promptText="Introduce el nombre" />
+                </VBox>
+
+                <!-- Apellidos -->
+                <VBox spacing="5.0">
+                    <Label text="Apellidos *" />
+                    <TextField fx:id="txtApellidos" promptText="Introduce los apellidos" />
+                </VBox>
+
+                <!-- Email -->
+                <VBox spacing="5.0">
+                    <Label text="Email *" />
+                    <TextField fx:id="txtEmail" promptText="usuario@ejemplo.com" />
+                </VBox>
+
+                <!-- Contraseña -->
+                <VBox spacing="5.0">
+                    <Label text="Contraseña *" />
+                    <PasswordField fx:id="txtPassword" promptText="Mínimo 6 caracteres" />
+                </VBox>
+
+                <!-- Teléfono -->
+                <VBox spacing="5.0">
+                    <Label text="Teléfono" />
+                    <TextField fx:id="txtTelefono" promptText="666 123 456" />
+                </VBox>
+
+                <!-- Rol -->
+                <VBox spacing="5.0">
+                    <Label text="Rol *" />
+                    <ComboBox fx:id="cbRol" prefWidth="250.0" promptText="Selecciona un rol" />
+                </VBox>
+
+                <!-- Botones -->
+                <HBox spacing="10.0">
+                    <padding>
+                        <Insets top="15.0" />
+                    </padding>
+                    <Button fx:id="btnGuardar" onAction="#guardarUsuario" prefWidth="120.0" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Guardar" />
+                    <Button fx:id="btnReset" onAction="#reset" prefWidth="120.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Limpiar" />
+                </HBox>
+
+                <!-- Botón Volver -->
+                <Button onAction="#volverMenu" prefWidth="250.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="← Volver al Menú">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Button>
+            </VBox>
+
+            <!-- SEPARADOR -->
+            <Separator orientation="VERTICAL" />
+
+            <!-- PANEL DERECHO: TABLA -->
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <Label text="Lista de Usuarios">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <TableView fx:id="tablaUsuarios" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="colNombre" prefWidth="100.0" text="Nombre" />
+                        <TableColumn fx:id="colApellidos" prefWidth="120.0" text="Apellidos" />
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="colTelefono" prefWidth="90.0" text="Teléfono" />
+                        <TableColumn fx:id="colRol" prefWidth="100.0" text="Rol" />
+                        <TableColumn fx:id="colActivo" prefWidth="60.0" text="Activo" />
+                        <TableColumn fx:id="colEditar" prefWidth="70.0" text="Editar" />
+                    </columns>
+                </TableView>
+
+                <Label style="-fx-text-fill: #7f8c8d;" text="* Campos obligatorios. Selecciona varios usuarios con Ctrl+Click para eliminar." />
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" 
+            stylesheets="@../styles/Styles.css"
+            xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.adrian.gestionfct.controller.MenuEstudianteController">
+    
+    <!-- Barra superior -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" 
+              style="-fx-background-color: #6f42c1; -fx-padding: 15;">
+            <Label text="Panel Estudiante" 
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUsuario" 
+                   style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Button text="Cerrar Sesión" 
+                    onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+    
+    <!-- Menú lateral -->
+    <left>
+        <VBox spacing="5" style="-fx-background-color: #2c3e50; -fx-padding: 20;" prefWidth="220">
+            
+            <Label text="MENÚ ESTUDIANTE" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 0 0 10 0;"/>
+            
+            <Button text="🏠 Inicio" 
+                    onAction="#handleInicio"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+            
+            <Label text="MI FCT" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 10 0 10 0;"/>
+            
+            <Button text="📋 Ver mi FCT" 
+                    onAction="#handleVerMiFCT"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="🏢 Mi Empresa" 
+                    onAction="#handleVerEmpresa"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="👨‍🏫 Mi Tutor/a" 
+                    onAction="#handleVerTutor"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+            
+            <Label text="DOCUMENTACIÓN" 
+                   style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-padding: 10 0 10 0;"/>
+            
+            <Button text="📄 Mis Documentos" 
+                    onAction="#handleMisDocumentos"
+                    styleClass="menu-button" prefWidth="180"/>
+            
+            <Button text="📤 Subir Informe" 
+                    onAction="#handleSubirInforme"
+                    styleClass="menu-button" prefWidth="180"/>
+        </VBox>
+    </left>
+    
+    <!-- Contenido principal -->
+    <center>
+        <VBox fx:id="contenidoPrincipal" spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+            
+            <Label fx:id="lblBienvenida" text="Bienvenido/a" 
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            
+            <!-- Información de la FCT -->
+            <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                
+                <Label text="Mi Formación en Centro de Trabajo" 
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                
+                <HBox spacing="30">
+                    <VBox spacing="5">
+                        <Label text="Estado:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                        <Label fx:id="lblEstadoFCT" text="Sin asignar" 
+                               style="-fx-font-size: 16px;"/>
+                    </VBox>
+                    
+                    <VBox spacing="5">
+                        <Label text="Empresa:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                        <Label fx:id="lblEmpresa" text="-" 
+                               style="-fx-font-size: 16px;"/>
+                    </VBox>
+                    
+                    <VBox spacing="5">
+                        <Label text="Tutor/a:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                        <Label fx:id="lblTutor" text="-" 
+                               style="-fx-font-size: 16px;"/>
+                    </VBox>
+                </HBox>
+                
+                <HBox spacing="30">
+                    <VBox spacing="5">
+                        <Label text="Periodo:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                        <Label fx:id="lblPeriodo" text="-" 
+                               style="-fx-font-size: 14px;"/>
+                    </VBox>
+                    
+                    <VBox spacing="5">
+                        <Label text="Horas realizadas:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                        <Label fx:id="lblHoras" text="0 / 400" 
+                               style="-fx-font-size: 14px;"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Barra de progreso -->
+                <VBox spacing="5">
+                    <Label text="Progreso:" style="-fx-font-weight: bold; -fx-text-fill: #666;"/>
+                    <ProgressBar fx:id="barraProgreso" progress="0" prefWidth="400" prefHeight="20"/>
+                    <Label fx:id="lblPorcentaje" text="0%" style="-fx-text-fill: #666;"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Documentos recientes -->
+            <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                <Label text="Documentos recientes" 
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                
+                <TableView fx:id="tablaDocumentos" prefHeight="150">
+                    <columns>
+                        <TableColumn fx:id="colDocNombre" text="Nombre" prefWidth="250"/>
+                        <TableColumn fx:id="colDocTipo" text="Tipo" prefWidth="120"/>
+                        <TableColumn fx:id="colDocFecha" text="Fecha" prefWidth="100"/>
+                        <TableColumn fx:id="colDocAcciones" text="Acciones" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            
+        </VBox>
+    </center>
+    
+    <!-- Barra inferior -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #ecf0f1; -fx-padding: 10;">
+            <Label text="GestionFCT v1.0 - Panel Estudiante" 
+                   style="-fx-text-fill: #999; -fx-font-size: 11px;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>
