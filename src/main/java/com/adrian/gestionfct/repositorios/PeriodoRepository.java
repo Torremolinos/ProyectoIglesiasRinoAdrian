@@ -19,4 +19,6 @@ public interface PeriodoRepository extends JpaRepository<Periodo, Long> {
     List<Periodo> findByTipo(TipoPeriodo tipo);
 
     List<Periodo> findByCursoAcademicoAndCurso(CursoAcademico cursoAcademico, Integer curso);
+
+    List<Periodo> findByActivoTrue();
 }

@@ -98,6 +98,9 @@ public class LoginController implements Initializable {
 		case ESTUDIANTE:
 			stageManager.switchScene(FxmlView.MENU_ESTUDIANTE);
 			break;
+		case PROFESOR:
+			stageManager.switchScene(FxmlView.MENU_DOCENTE);
+			break;
 		default:
 			mostrarError("Rol no reconocido");
 		}

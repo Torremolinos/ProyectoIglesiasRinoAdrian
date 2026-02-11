@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.adrian.gestionfct.controller.EmpresaController"
+            stylesheets="@../styles/Styles.css">
+    
+    <!-- CABECERA -->
+    <top>
+        <VBox spacing="10" styleClass="header-panel">
+            <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label fx:id="lblTitulo" text="Gestión de Empresas" styleClass="title-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnVolver" text="← Volver al Menú" onAction="#handleVolver" styleClass="btn-secondary"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <VBox spacing="15">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            
+            <!-- BARRA DE HERRAMIENTAS -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBuscar" promptText="Buscar por nombre, NIF o localidad..." prefWidth="300"/>
+                <ComboBox fx:id="cmbFiltroEstado" prefWidth="120"/>
+                <Button text="Limpiar" onAction="#handleLimpiarFiltros" styleClass="btn-secondary"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblContador" text="0 empresas" styleClass="contador-label"/>
+            </HBox>
+            
+            <!-- TABLA DE EMPRESAS -->
+            <TableView fx:id="tablaEmpresas" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+                    <TableColumn fx:id="colNif" text="NIF/CIF" prefWidth="100" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                    <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="colLocalidad" text="Localidad" prefWidth="120"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="80" style="-fx-alignment: CENTER;"/>
+                </columns>
+            </TableView>
+            
+            <!-- BOTONES DE ACCIÓN -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button fx:id="btnNueva" text="+ Nueva Empresa" onAction="#handleNueva" styleClass="btn-primary"/>
+                <Button fx:id="btnEditar" text="✏ Editar" onAction="#handleEditar" styleClass="btn-secondary"/>
+                <Button fx:id="btnEliminar" text="🗑 Eliminar" onAction="#handleEliminar" styleClass="btn-danger"/>
+                <Button fx:id="btnVerDetalles" text="👁 Ver Detalles" onAction="#handleVerDetalles" styleClass="btn-info"/>
+            </HBox>
+        </VBox>
+    </center>
+    
+</BorderPane>

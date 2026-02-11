@@ -87,6 +87,8 @@
             <Button text="📆 Periodos FCT" 
                     onAction="#handleGestionPeriodos"
                     styleClass="menu-button" prefWidth="180"/>
+                    
+           <Button text="Gestión Estudiantes" onAction="#abrirGestionEstudiantes" styleClass="menu-button"/>
         </VBox>
     </left>
     

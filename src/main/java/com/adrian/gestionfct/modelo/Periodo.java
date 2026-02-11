@@ -35,6 +35,9 @@ public class Periodo {
 	@Column(name = "horas_totales")
 	private Integer horasTotales;
 
+	@Column(nullable = false)
+	private Boolean activo = true;
+
 	// ============== RELACIONES ==============
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "curso_academico_id", nullable = false)
@@ -126,6 +129,14 @@ public class Periodo {
 
 	public void setFcts(List<FCT> fcts) {
 		this.fcts = fcts;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	// ============== MÉTODOS ÚTILES ==============

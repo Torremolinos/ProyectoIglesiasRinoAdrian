@@ -1,10 +1,357 @@
-/* CSS for app */
+/* ============================================================
+ * GESTIÓN FCT - HOJA DE ESTILOS PRINCIPAL
+ * Proyecto Intermodular 2º DAM - Curso 2025-2026
+ * Autor: Adrián Iglesias Rino
+ * Versión: 3.0
+ * ============================================================ */
 
-.btnGreen{
-	-fx-background-color:  #3cbc53;
+/* ==================== VARIABLES Y RAÍZ ==================== */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #ececec;
+    -fx-background: #f5f5f5;
+    
+    /* Colores principales */
+    -primary-color: #3498db;
+    -primary-dark: #2980b9;
+    -secondary-color: #95a5a6;
+    -success-color: #27ae60;
+    -danger-color: #e74c3c;
+    -warning-color: #f39c12;
+    -info-color: #17a2b8;
+    
+    /* Colores de texto */
+    -text-primary: #2c3e50;
+    -text-secondary: #7f8c8d;
+    -text-light: #ffffff;
 }
 
-.background{
-	-fx-background-color: DODGERBLUE;
+/* ==================== PANELES Y CONTENEDORES ==================== */
+.header-panel {
+    -fx-background-color: linear-gradient(to right, #2c3e50, #34495e);
+    -fx-padding: 15 20 15 20;
 }
 
+.sidebar-panel {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 10;
+}
+
+.content-panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+/* ==================== ETIQUETAS ==================== */
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.subtitle-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+.contador-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+    -fx-font-style: italic;
+}
+
+/* ==================== BOTONES ==================== */
+.button {
+    -fx-background-radius: 4;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+    -fx-font-weight: normal;
+}
+
+.btn-primary {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -primary-dark;
+}
+
+.btn-secondary {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: -text-primary;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 4;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #d5dbdb;
+}
+
+.btn-success {
+    -fx-background-color: -success-color;
+    -fx-text-fill: white;
+}
+
+.btn-success:hover {
+    -fx-background-color: #219a52;
+}
+
+.btn-danger {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #c0392b;
+}
+
+.btn-info {
+    -fx-background-color: -info-color;
+    -fx-text-fill: white;
+}
+
+.btn-info:hover {
+    -fx-background-color: #138496;
+}
+
+.btn-warning {
+    -fx-background-color: -warning-color;
+    -fx-text-fill: white;
+}
+
+.btn-warning:hover {
+    -fx-background-color: #e67e22;
+}
+
+.btnGreen {
+    -fx-background-color: -success-color;
+    -fx-text-fill: white;
+}
+
+/* ==================== CAMPOS DE FORMULARIO ==================== */
+.text-field, .password-field, .text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 8 12 8 12;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: -primary-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.25), 5, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box:focused {
+    -fx-border-color: -primary-color;
+}
+
+/* ==================== TABLAS ==================== */
+.data-table {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-padding: 10;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+.table-row-cell {
+    -fx-border-color: transparent transparent #ecf0f1 transparent;
+    -fx-padding: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected:hover {
+    -fx-background-color: #bbdefb;
+}
+
+/* ==================== MENÚ LATERAL ==================== */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ecf0f1;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 15 12 15;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+    -fx-max-width: infinity;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-button:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+}
+
+.menu-separator {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+/* ==================== TARJETAS DE ESTADÍSTICAS ==================== */
+.stat-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+.stat-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -primary-color;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ==================== ALERTAS Y MENSAJES ==================== */
+.alert-success {
+    -fx-background-color: #d4edda;
+    -fx-border-color: #c3e6cb;
+    -fx-text-fill: #155724;
+    -fx-padding: 12;
+    -fx-background-radius: 4;
+}
+
+.alert-error {
+    -fx-background-color: #f8d7da;
+    -fx-border-color: #f5c6cb;
+    -fx-text-fill: #721c24;
+    -fx-padding: 12;
+    -fx-background-radius: 4;
+}
+
+.alert-warning {
+    -fx-background-color: #fff3cd;
+    -fx-border-color: #ffeeba;
+    -fx-text-fill: #856404;
+    -fx-padding: 12;
+    -fx-background-radius: 4;
+}
+
+.alert-info {
+    -fx-background-color: #d1ecf1;
+    -fx-border-color: #bee5eb;
+    -fx-text-fill: #0c5460;
+    -fx-padding: 12;
+    -fx-background-radius: 4;
+}
+
+/* ==================== LOGIN ==================== */
+.login-container {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+}
+
+.login-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    -fx-padding: 40;
+}
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+/* ==================== SCROLLBAR ==================== */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #ced4da;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #adb5bd;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+/* ==================== TOOLTIP ==================== */
+.tooltip {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12 8 12;
+    -fx-background-radius: 4;
+}
+
+/* ==================== SPINNER ==================== */
+.spinner {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4;
+}
+
+/* ==================== CHECK BOX ==================== */
+.check-box {
+    -fx-text-fill: -text-primary;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -primary-color;
+}
+
+/* ==================== PROGRESS BAR ==================== */
+.progress-bar {
+    -fx-pref-height: 20;
+    -fx-background-radius: 10;
+}
+
+.progress-bar .bar {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 10;
+}
+
+.progress-bar .track {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 10;
+}
+
+/* ==================== COMPATIBILIDAD ==================== */
+.background {
+    -fx-background-color: -primary-color;
+}

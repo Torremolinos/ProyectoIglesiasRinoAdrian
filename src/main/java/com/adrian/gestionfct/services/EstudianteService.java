@@ -1,11 +1,10 @@
 package com.adrian.gestionfct.services;
 
+import com.adrian.gestionfct.modelo.Estudiante;
+import com.adrian.gestionfct.repositorios.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.adrian.gestionfct.modelo.Estudiante;
-import com.adrian.gestionfct.modelo.Usuario;
-import com.adrian.gestionfct.repositorios.EstudianteRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,63 +15,70 @@ public class EstudianteService {
     @Autowired
     private EstudianteRepository estudianteRepository;
 
-    public Estudiante save(Estudiante estudiante) {
+    // CRUD básico
+    @Transactional
+    public Estudiante guardar(Estudiante estudiante) {
+        validar(estudiante);
         return estudianteRepository.save(estudiante);
     }
 
-    public Estudiante update(Estudiante estudiante) {
-        return estudianteRepository.save(estudiante);
-    }
-
-    public void delete(Estudiante estudiante) {
-        estudianteRepository.delete(estudiante);
-    }
-
-    public void deleteById(Long id) {
+    @Transactional
+    public void eliminar(Long id) {
         estudianteRepository.deleteById(id);
     }
 
-    public Optional<Estudiante> findById(Long id) {
+    public List<Estudiante> obtenerTodos() {
+        return estudianteRepository.findAllByOrderByApellidosAsc();
+    }
+
+    public Optional<Estudiante> obtenerPorId(Long id) {
         return estudianteRepository.findById(id);
     }
 
-    public List<Estudiante> findAll() {
-        return estudianteRepository.findAll();
+    // Búsquedas
+    public List<Estudiante> buscarPorNombreOApellidos(String busqueda) {
+        return estudianteRepository.buscarPorNombreOApellidos(busqueda);
     }
 
-    public List<Estudiante> findActivos() {
-        return estudianteRepository.findByActivoTrue();
-    }
-
-    public Optional<Estudiante> findByDni(String dni) {
-        return estudianteRepository.findByDni(dni);
-    }
-
-    public Optional<Estudiante> findByUsuario(Usuario usuario) {
-        return estudianteRepository.findByUsuario(usuario);
-    }
-
-    public List<Estudiante> findByCiclo(String ciclo) {
+    public List<Estudiante> obtenerPorCiclo(String ciclo) {
         return estudianteRepository.findByCiclo(ciclo);
     }
 
-    public List<Estudiante> findByGrupo(String grupo) {
-        return estudianteRepository.findByGrupo(grupo);
+    // Validaciones
+    public void validar(Estudiante estudiante) {
+        if (estudiante.getNombre() == null || estudiante.getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre es obligatorio");
+        }
+        if (estudiante.getApellidos() == null || estudiante.getApellidos().trim().isEmpty()) {
+            throw new IllegalArgumentException("Los apellidos son obligatorios");
+        }
+        if (estudiante.getEmail() == null || estudiante.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("El email es obligatorio");
+        }
+        if (!estudiante.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new IllegalArgumentException("El email no es válido");
+        }
+        if (estudiante.getCiclo() == null || estudiante.getCiclo().trim().isEmpty()) {
+            throw new IllegalArgumentException("El ciclo es obligatorio");
+        }
+        if (estudiante.getGrupo() == null || estudiante.getGrupo().trim().isEmpty()) {
+            throw new IllegalArgumentException("El grupo es obligatorio");
+        }
     }
 
-    public List<Estudiante> findByProfesorTutor(Usuario profesorTutor) {
-        return estudianteRepository.findByProfesorTutor(profesorTutor);
+    public boolean existeEmail(String email, Long idExcluir) {
+        Optional<Estudiante> existente = estudianteRepository.findByEmail(email);
+        if (existente.isEmpty()) {
+            return false;
+        }
+        // Si es el mismo estudiante que estamos editando, no hay conflicto
+        return !existente.get().getId().equals(idExcluir);
     }
 
-    public List<Estudiante> findByCicloYGrupo(String ciclo, String grupo) {
-        return estudianteRepository.findByCicloAndGrupo(ciclo, grupo);
-    }
-
-    public boolean existeDni(String dni) {
-        return estudianteRepository.existsByDni(dni);
-    }
-
-    public void deleteInBatch(List<Estudiante> estudiantes) {
-        estudianteRepository.deleteAll(estudiantes);
+    /**
+     * Obtiene todos los estudiantes activos.
+     */
+    public List<Estudiante> obtenerActivos() {
+        return estudianteRepository.findByActivoTrue();
     }
 }

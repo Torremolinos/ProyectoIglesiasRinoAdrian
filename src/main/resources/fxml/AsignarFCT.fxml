@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.adrian.gestionfct.controller.AsignarFCTController"
+            stylesheets="@../styles/Styles.css">
+    
+    <!-- CABECERA -->
+    <top>
+        <VBox spacing="10" styleClass="header-panel">
+            <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Asignación de FCT" styleClass="title-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnVolver" text="← Volver al Menú" onAction="#handleVolver" styleClass="btn-secondary"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <VBox spacing="15">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            
+            <!-- BARRA DE FILTROS -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBuscar" promptText="Buscar por estudiante o empresa..." prefWidth="250"/>
+                <ComboBox fx:id="cmbFiltroEstado" prefWidth="150"/>
+                <ComboBox fx:id="cmbFiltroCurso" prefWidth="150"/>
+                <Button text="Limpiar" onAction="#handleLimpiarFiltros" styleClass="btn-secondary"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblContador" text="0 asignaciones" styleClass="contador-label"/>
+            </HBox>
+            
+            <!-- TABLA DE FCTs -->
+            <TableView fx:id="tablaFCTs" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="colEstudiante" text="Estudiante" prefWidth="180"/>
+                    <TableColumn fx:id="colEmpresa" text="Empresa" prefWidth="180"/>
+                    <TableColumn fx:id="colTutor" text="Tutor Empresa" prefWidth="150"/>
+                    <TableColumn fx:id="colPeriodo" text="Periodo" prefWidth="120"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="90" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="colProgreso" text="Progreso" prefWidth="120" style="-fx-alignment: CENTER;"/>
+                </columns>
+            </TableView>
+            
+            <!-- BOTONES DE ACCIÓN -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button fx:id="btnNuevaAsignacion" text="+ Nueva Asignación" onAction="#handleNuevaAsignacion" styleClass="btn-primary"/>
+                <Button fx:id="btnEditar" text="✏ Editar" onAction="#handleEditar" styleClass="btn-secondary"/>
+                <Button fx:id="btnFinalizar" text="✓ Finalizar" onAction="#handleFinalizar" styleClass="btn-success"/>
+                <Button fx:id="btnCancelar" text="✗ Cancelar" onAction="#handleCancelar" styleClass="btn-danger"/>
+                <Button fx:id="btnVerDetalles" text="👁 Ver Detalles" onAction="#handleVerDetalles" styleClass="btn-info"/>
+            </HBox>
+        </VBox>
+    </center>
+    
+</BorderPane>

@@ -56,4 +56,11 @@ public class PeriodoService {
     public List<Periodo> findByCursoAcademicoYCurso(CursoAcademico cursoAcademico, Integer curso) {
         return periodoRepository.findByCursoAcademicoAndCurso(cursoAcademico, curso);
     }
+
+    /**
+     * Obtiene los periodos activos (vigentes).
+     */
+    public List<Periodo> findActivos() {
+        return periodoRepository.findByActivoTrue();
+    }
 }

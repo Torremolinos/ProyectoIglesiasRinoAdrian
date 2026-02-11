@@ -74,7 +74,7 @@ public class MenuAdminController implements Initializable {
 	private void cargarEstadisticas() {
 		try {
 			if (lblTotalEstudiantes != null) {
-				lblTotalEstudiantes.setText(String.valueOf(estudianteService.findAll().size()));
+				lblTotalEstudiantes.setText(String.valueOf(estudianteService.obtenerTodos().size()));
 			}
 			if (lblTotalEmpresas != null) {
 				lblTotalEmpresas.setText(String.valueOf(empresaService.findAll().size()));
@@ -97,14 +97,12 @@ public class MenuAdminController implements Initializable {
 
 	@FXML
 	private void handleGestionUsuarios(ActionEvent event) {
-		// TODO: Descomentar cuando exista GestionUsuarios.fxml
-		// stageManager.switchScene(FxmlView.GESTION_USUARIOS);
-		mostrarEnDesarrollo("Gestión de Usuarios");
+		stageManager.switchScene(FxmlView.GESTION_USUARIOS);
 	}
 
 	@FXML
 	private void handleGestionEmpresas(ActionEvent event) {
-		mostrarEnDesarrollo("Gestión de Empresas");
+		stageManager.switchScene(FxmlView.GESTION_EMPRESAS);
 	}
 
 	@FXML
@@ -114,7 +112,7 @@ public class MenuAdminController implements Initializable {
 
 	@FXML
 	private void handleGestionEstudiantes(ActionEvent event) {
-		mostrarEnDesarrollo("Gestión de Estudiantes");
+		stageManager.switchScene(FxmlView.GESTION_ESTUDIANTES);
 	}
 
 	@FXML
@@ -124,12 +122,12 @@ public class MenuAdminController implements Initializable {
 
 	@FXML
 	private void handleAsignarFCT(ActionEvent event) {
-		mostrarEnDesarrollo("Asignar FCT");
+		stageManager.switchScene(FxmlView.ASIGNAR_FCT);
 	}
 
 	@FXML
 	private void handleGestionDocumentos(ActionEvent event) {
-		mostrarEnDesarrollo("Gestión de Documentos");
+		stageManager.switchScene(FxmlView.GESTION_DOCUMENTOS);
 	}
 
 	@FXML
@@ -152,6 +150,7 @@ public class MenuAdminController implements Initializable {
 	private void handleSalir(ActionEvent event) {
 		Platform.exit();
 	}
+	
 
 	private void mostrarEnDesarrollo(String modulo) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -160,4 +159,7 @@ public class MenuAdminController implements Initializable {
 		alert.setContentText("Esta funcionalidad estará disponible próximamente.");
 		alert.showAndWait();
 	}
+	
+	
+	
 }
